@@ -5,14 +5,15 @@ let isGoingUp = false;
 let speed;
 let lost = false;
 let currentScore = 0;
-speed = prompt("Welcome To Snake Game!! Set snake speed between 1 to 10");
+speed = prompt(
+  "Welcome To Snake Game!! Set snake speed between 1 to 10 (7 to 9 is best)."
+);
 if (speed >= 1 && speed <= 10) {
   speed = 550 - speed * 50;
 } else {
   alert("select number between 1 to 10 or default speed is 7");
   speed = 200;
 }
-let buttonClick = new Audio("buttonClick1.mp3");
 let impact = new Audio("impact1.mp3");
 let eat = new Audio("eat.mp3");
 let highScore = 0;
@@ -36,36 +37,32 @@ document.querySelector(".btn1").addEventListener("click", function () {
   downPressed = false;
   leftPressed = false;
   upPressed = true;
-  buttonClick.play();
-  window.navigator.vibrate(20);
+  window.navigator.vibrate(30);
 });
 document.querySelector(".btn2").addEventListener("click", function () {
   rightPressed = false;
   downPressed = false;
   leftPressed = true;
   upPressed = false;
-  buttonClick.play();
-  window.navigator.vibrate(20);
+  window.navigator.vibrate(30);
 });
 document.querySelector(".btn3").addEventListener("click", function () {
   rightPressed = true;
   downPressed = false;
   leftPressed = false;
   upPressed = false;
-  buttonClick.play();
-  window.navigator.vibrate(20);
+  window.navigator.vibrate(30);
 });
 document.querySelector(".btn4").addEventListener("click", function () {
   rightPressed = false;
   downPressed = true;
   leftPressed = false;
   upPressed = false;
-  buttonClick.play();
-  window.navigator.vibrate(20);
+  window.navigator.vibrate(30);
 });
 let canvas = document.querySelector("#myCanvas");
 let context = canvas.getContext("2d");
-context.fillStyle = "#111d5e";
+context.fillStyle = "rgba(17,19,94,0.8)";
 context.fillRect(0, 0, 362, 362);
 document.addEventListener("keydown", keypressed);
 
@@ -96,7 +93,7 @@ function keypressed(e) {
 }
 function clearCanvas() {
   context.clearRect(0, 0, 362, 362);
-  context.fillStyle = "#111d5e";
+  context.fillStyle = "rgba(17,19,94,0.8)";
   context.fillRect(0, 0, 362, 362);
 }
 function lose() {
@@ -109,10 +106,14 @@ function lose() {
   document.querySelector(".btn2").disabled = true;
   document.querySelector(".btn3").disabled = true;
   document.querySelector(".btn4").disabled = true;
-  context.font = "30px Comic Sans MS";
+  context.font = "25px Comic Sans MS";
   context.fillStyle = "#fecd1a";
   context.textAlign = "center";
-  context.fillText("You Lose", canvas.width / 2, canvas.height / 2);
+  context.fillText(
+    "It ain’t over till it’s over.🐍",
+    canvas.width / 2,
+    canvas.height / 2
+  );
   document.querySelector(".btnPlay").disabled = false;
   document.querySelector(".btnPlay").innerHTML = "Play Again";
   impact.play();
